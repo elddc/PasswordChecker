@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Judgemental Password Manager</title>
+	<link rel="icon" href="icon.png">
+	<link rel="stylesheet" href="styles.css"/>
+
+	<script src="zxcvbn.js"></script>
+	<script src="script.js"></script>
+</head>
+<body>
+<div class="main">
+	<div class="row">
+		<div>
+			<label for="pass">Password</label><br>
+			<input type="password" id="pass" name="pass" class="txt-in"><br>
+			<span class="right align-right">
+				<label for="show" style="margin-right: 0.5em; padding-top: 0;">Show</label>
+				<input type="checkbox" class="right" id="show" onclick="showPass(this.checked)"><br><br>
+				<button class="rect-button white blue-bg right" onclick="getStrength()">
+					Test Strength
+				</button>
+			</span>
+		</div>
+		<div id="results-container">
+			<div class="big">Results</div>
+			<br>
+			<div id="results"></div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
