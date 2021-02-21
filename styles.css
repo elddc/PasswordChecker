@@ -30,6 +30,9 @@ ul {
     margin: 0;
     padding: 0;
 }
+b {
+    color: var(--blue);
+}
 .main {
     display: grid;
     place-items: center;
@@ -92,7 +95,7 @@ ul {
     border: 0.1em solid var(--gray);
     border-radius: 0.5em;
 }
-.txt-button,
+.txt-utton,
 .rect-button{
     border: none;
     border-radius: 1vh;

@@ -4,6 +4,7 @@ const types = ['online_throttling_100_per_hour',  //fastest to slowest
 	'offline_fast_hashing_1e10_per_second',
 ];
 const danger = ['very risky', 'risky', 'medium', 'safe', 'very safe'];
+let guesses = [];
 
 function showPass(show){
 	document.getElementById("pass").type = show ? "text" : "password";
@@ -12,9 +13,11 @@ function showPass(show){
 
 function getStrength() {
 	let info = zxcvbn(document.getElementById("pass").value);
-	//let guesses = info.guesses;
 	let str = info.crack_times_display[types[1]];
 	let risk = danger[info.score];
+
+	let guess = info.guesses;
+	guesses.push(guess);
 
 	let warn = info.feedback.warning;
 	if (warn === "")
@@ -29,6 +32,20 @@ function getStrength() {
 		out += '<br><b>Warning</b>: ' + warn;
 	if (sugg)
 		out += '<br><b>Suggestion</b>: ' + sugg;
+
+	if (guesses.length !== 1){
+		out += '<br><br>This password is <b>';
+
+		let last = guesses[guesses.length - 2];
+		let percent = ((guess-last)/last * 100).toFixed(2);
+		if (percent > 0)
+			out += percent + '% better';
+		else {
+			percent = ((last-guess)/guess * 100).toFixed(2);
+			out += percent + '% worse';
+		}
+		out += '</b> than your last one.';
+	}
 
 	document.getElementById("results").innerHTML = out;
 	document.getElementById("results-container").style.display = 'block';
