@@ -12,6 +12,13 @@ function showPass(show){
 }
 
 function getStrength() {
+    if (!document.getElementById("pass").value){
+        document.getElementById("results").innerHTML = "Please enter a password.";
+        document.getElementById("results-container").style.display = 'block';
+        console.log("no password entered");
+        return false;
+    }
+
 	let info = zxcvbn(document.getElementById("pass").value);
 	let str = info.crack_times_display[types[1]];
 	let risk = danger[info.score];
